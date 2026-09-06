@@ -1,0 +1,115 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Ma carte Crousti Poulet</title><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#2C1912"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&display=swap"><style>
+:root{--bg:#F7F1E8;--bg2:#EFE5D6;--ink:#2A1C14;--ink2:#6B564A;--line:#DCCDB9;--card:#2C1912;--card2:#4A2A1C;--card-ink:#FBF3E8;--card-muted:#C9AE98;--accent:#C2411F;--spice:#E3A03B;--good:#2F7D4F;--bad:#B3261E;--field:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#17110E;--bg2:#221915;--ink:#F3E9DE;--ink2:#B69E8D;--line:#3D2E26;--accent:#E0552F;--spice:#E9AC4D;--good:#5DBB82;--bad:#F07A73;--field:#241B17}}
+*{box-sizing:border-box}html{color-scheme:light dark}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;margin:0;line-height:1.1;text-wrap:balance}
+.app{max-width:480px;margin:0 auto;padding:20px 18px 40px}
+header.top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:18px}
+header.top h1{font-size:22px;font-weight:800;white-space:nowrap}header.top .halal{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
+.view{display:none}.view.on{display:block}
+.card{background:linear-gradient(160deg,var(--card2),var(--card) 60%);color:var(--card-ink);border-radius:20px;padding:22px 22px 20px;box-shadow:0 18px 40px -22px rgba(40,20,10,.6)}
+.card .brand{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card .brand h2{font-size:24px;font-weight:800}.card .brand small{display:block;font-size:12px;color:var(--card-muted);margin-top:2px;font-family:"Public Sans"}
+.card .num{font-variant-numeric:tabular-nums;font-size:13px;letter-spacing:.14em;color:var(--card-muted);text-align:right}
+.card .amount{margin-top:22px;display:flex;align-items:baseline;gap:8px}
+.card .amount b{white-space:nowrap;font-family:"Bricolage Grotesque";font-size:44px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}.card .amount span{color:var(--card-muted);font-size:14px}
+.bar{margin-top:12px;height:12px;border-radius:999px;background:rgba(255,255,255,.14);overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--spice),var(--accent));border-radius:999px;transition:width .5s}
+.card .under{display:flex;justify-content:space-between;margin-top:8px;font-size:13px;color:var(--card-muted);font-variant-numeric:tabular-nums}
+.reward{margin-top:16px;display:flex;align-items:center;gap:12px;background:var(--spice);color:#2A1C14;border-radius:14px;padding:12px 14px}
+.reward b{font-family:"Bricolage Grotesque";font-size:17px;font-weight:800}.reward span{font-size:13px;display:block}
+.qrbox{background:#fff;border-radius:16px;padding:14px;display:flex;justify-content:center;margin-top:16px}.qrbox img,.qrbox canvas{width:180px;height:180px}
+.block{margin-top:22px}.block h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.list{border-top:1px solid var(--line)}.row{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.row .d{color:var(--ink2);font-size:12px}.row .a{font-variant-numeric:tabular-nums;font-weight:600;text-align:right}.row .a.gift{color:var(--good)}
+.empty,.hint{color:var(--ink2);font-size:13px}.hint{margin-top:8px}
+label.f{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
+input,select{width:100%;font:inherit;font-size:17px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--field);color:var(--ink)}
+input:focus,select:focus,button:focus-visible{outline:3px solid var(--spice);outline-offset:2px}
+input.big{font-variant-numeric:tabular-nums;font-size:22px;font-weight:700}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:13px 16px;font-weight:700;font-size:16px}
+.btn{background:var(--accent);color:#fff;width:100%;margin-top:16px}.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line)}.btn.good{background:var(--good);color:#fff}.btn.sm{width:auto;padding:9px 14px;font-size:14px;margin-top:0}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.quick{display:flex;gap:8px;margin-top:8px}.quick button{flex:1;background:var(--bg2);color:var(--ink);border:1.5px solid var(--line);padding:9px 4px;font-size:13px;line-height:1.3;font-variant-numeric:tabular-nums}
+.msg{margin-top:12px;font-size:14px;font-weight:600;min-height:20px}.msg.err{color:var(--bad)}.msg.ok{color:var(--good)}
+.box{background:var(--bg2);border-radius:16px;padding:18px}.box p{margin:0 0 4px;font-size:14px;color:var(--ink2)}
+.big{font-family:"Bricolage Grotesque";font-size:30px;font-weight:800;font-variant-numeric:tabular-nums}
+.seg{display:flex;gap:6px;margin-top:8px}.seg button{flex:1;background:var(--bg2);color:var(--ink);border:1.5px solid var(--line);padding:9px 6px;font-size:14px}.seg button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s;white-space:nowrap}.toast.on{opacity:1}
+video{width:100%;border-radius:16px;background:#000;max-height:60vh;object-fit:cover}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}td.n,th.n{text-align:right}
+.wrap{overflow-x:auto}
+a{color:var(--accent)}
+</style></head><body><div class="app">
+<header class="top"><h1>Crousti Poulet</h1><span class="halal">Poulet braisé · halal</span></header>
+
+<section class="view on" id="v-welcome">
+  <div class="card"><div class="brand"><div><h2>Carte fidélité</h2><small>Valable dans nos 3 boutiques</small></div></div>
+    <div class="amount"><b>100 €</b><span>de commandes = 1 menu solo offert</span></div>
+    <p style="margin:14px 0 0;font-size:14px;color:var(--card-muted)">Poulet braisé mariné à nos 21 épices, halal. Montrez votre carte à chaque commande en boutique, le vendeur la scanne.</p></div>
+  <div class="seg" style="margin-top:20px"><button type="button" id="tabNew" aria-pressed="true">Créer ma carte</button><button type="button" id="tabOld" aria-pressed="false">Retrouver ma carte</button></div>
+  <form id="fNew" autocomplete="off">
+    <label class="f" for="nPhone">Numéro de téléphone</label><input id="nPhone" type="tel" inputmode="tel" placeholder="06 12 34 56 78" required>
+    <label class="f" for="nName">Prénom (facultatif)</label><input id="nName" type="text" maxlength="40" placeholder="Prénom">
+    <label class="f" for="nPin">Code personnel à 4 chiffres</label><input id="nPin" type="password" inputmode="numeric" maxlength="4" pattern="\d{4}" placeholder="····" required>
+    <p class="hint">Ce code sert à retrouver votre carte si vous changez de téléphone. Ne le communiquez pas.</p>
+    <button class="btn" type="submit">Créer ma carte</button><div class="msg err" id="nMsg"></div>
+  </form>
+  <form id="fOld" autocomplete="off" hidden>
+    <label class="f" for="oPhone">Numéro de téléphone</label><input id="oPhone" type="tel" inputmode="tel" placeholder="06 12 34 56 78" required>
+    <label class="f" for="oPin">Code personnel</label><input id="oPin" type="password" inputmode="numeric" maxlength="4" placeholder="····" required>
+    <button class="btn" type="submit">Retrouver ma carte</button><div class="msg err" id="oMsg"></div>
+  </form>
+</section>
+
+<section class="view" id="v-card">
+  <div class="card">
+    <div class="brand"><div><h2 id="cName">Carte fidélité</h2><small>Valable dans nos 3 boutiques</small></div><div class="num" id="cCode"></div></div>
+    <div class="amount"><b id="cCur">0,00 €</b><span>sur <span id="cGoal">100</span> €</span></div>
+    <div class="bar"><i id="cBar"></i></div>
+    <div class="under"><span id="cLeft"></span><span id="cTot"></span></div>
+    <div class="reward" id="cReward" hidden><div><b id="cRewardTxt">1 menu solo offert</b><span>Montrez cette carte au vendeur pour en profiter</span></div></div>
+    <div class="qrbox" id="qr"></div>
+    <p style="margin:10px 0 0;text-align:center;font-size:13px;color:var(--card-muted)">Le vendeur scanne ce code à chaque commande</p>
+  </div>
+  <p class="hint">Astuce : ajoutez cette page à votre écran d'accueil (iPhone : Partager → « Sur l'écran d'accueil » ; Android : menu ⋮ → « Ajouter à l'écran d'accueil ») pour retrouver votre carte en un clic.</p>
+  <section class="block"><h3>Historique</h3><div class="list" id="cHist"></div></section>
+  <button class="btn alt" id="refresh" type="button">Actualiser</button>
+  <button class="btn alt" id="logout" type="button" style="margin-top:10px">Quitter ma carte sur ce téléphone</button>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+var $=function(s){return document.querySelector(s)};
+function eur(n){return Number(n).toFixed(2).replace('.',',')+' €'}
+function fmtDate(t){var d=new Date(t);return d.toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'2-digit'})+' · '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}
+function toast(t){var e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(function(){e.classList.remove('on')},2200)}
+function show(id){document.querySelectorAll('.view').forEach(function(v){v.classList.toggle('on',v.id===id)});window.scrollTo(0,0)}
+var BASE='https://mwfsdcmmhofgwnaylppk.supabase.co/functions/v1/fidelite';
+async function api(path,opts){opts=opts||{};var h={'Content-Type':'application/json'};if(opts.token)h['Authorization']='Bearer '+opts.token;
+  var r=await fetch(BASE+path,{method:opts.body?'POST':'GET',headers:h,body:opts.body?JSON.stringify(opts.body):undefined});
+  var j=await r.json().catch(function(){return {error:'Réponse invalide du serveur.'}});if(!r.ok)throw Object.assign(new Error(j.error||'Erreur'),{status:r.status});return j}
+function shopName(c){return {bobigny:'Bobigny',noisy:'Noisy-le-Sec',stains:'Stains'}[c]||c}
+function renderHist(el,h){el.innerHTML='';if(!h||!h.length){el.innerHTML='<div class="empty" style="padding:12px 0">Aucune commande enregistrée pour l’instant.</div>';return}
+  h.forEach(function(e){var r=document.createElement('div');r.className='row';r.innerHTML='<div>'+(e.kind==='gift'?'Menu solo offert':'Commande')+'</div><div class="a'+(e.kind==='gift'?' gift':'')+'">'+(e.kind==='gift'?'offert':'+ '+eur(e.amount))+'</div><div class="d">'+shopName(e.shop_code)+' · '+fmtDate(e.created_at)+'</div>';el.appendChild(r)})}
+
+var KEY='cpf_token',token=null,card=null,qrObj=null;
+try{token=localStorage.getItem(KEY)}catch(e){}
+$('#tabNew').onclick=function(){$('#fNew').hidden=false;$('#fOld').hidden=true;$('#tabNew').setAttribute('aria-pressed','true');$('#tabOld').setAttribute('aria-pressed','false')};
+$('#tabOld').onclick=function(){$('#fNew').hidden=true;$('#fOld').hidden=false;$('#tabNew').setAttribute('aria-pressed','false');$('#tabOld').setAttribute('aria-pressed','true')};
+$('#fNew').onsubmit=async function(e){e.preventDefault();$('#nMsg').textContent='';try{var r=await api('/api/register',{body:{phone:$('#nPhone').value,first_name:$('#nName').value,pin:$('#nPin').value}});setToken(r.token);render(r.card);toast('Carte créée')}catch(x){$('#nMsg').textContent=x.message}};
+$('#fOld').onsubmit=async function(e){e.preventDefault();$('#oMsg').textContent='';try{var r=await api('/api/login',{body:{phone:$('#oPhone').value,pin:$('#oPin').value}});setToken(r.token);render(r.card);toast('Carte retrouvée')}catch(x){$('#oMsg').textContent=x.message}};
+function setToken(t){token=t;try{localStorage.setItem(KEY,t)}catch(e){}}
+function render(c){card=c;show('v-card');
+  $('#cName').textContent=c.first_name?('Carte de '+c.first_name):'Carte fidélité';$('#cCode').textContent=c.card_code;$('#cGoal').textContent=c.goal;
+  $('#cCur').textContent=eur(c.current);$('#cBar').style.width=Math.min(100,c.current/c.goal*100)+'%';
+  $('#cLeft').textContent=c.available>0?'Menu solo offert disponible':'Encore '+eur(c.goal-c.current)+' avant votre menu solo offert';
+  $('#cTot').textContent='Cumul '+eur(c.total);
+  $('#cReward').hidden=c.available<=0;$('#cRewardTxt').textContent=c.available>1?c.available+' menus solo offerts':'1 menu solo offert';
+  var txt='CPF:'+c.card_code+':'+token;if(!qrObj){qrObj=new QRCode($('#qr'),{text:txt,width:180,height:180,colorDark:'#2A1C14',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M})}else{qrObj.clear();qrObj.makeCode(txt)}
+  renderHist($('#cHist'),c.history)}
+async function load(){if(!token)return;try{var r=await api('/api/card?token='+encodeURIComponent(token));render(r.card)}catch(x){if(x.status===404){token=null;try{localStorage.removeItem(KEY)}catch(e){}}else toast(x.message)}}
+$('#refresh').onclick=function(){load();toast('Carte actualisée')};
+$('#logout').onclick=function(){token=null;card=null;try{localStorage.removeItem(KEY)}catch(e){}show('v-welcome')};
+load();
+</script><div class="toast" id="toast"></div></div></body></html>
